@@ -42,6 +42,7 @@
 /* ================= CAN (TJA1050) ================= */
 #define CAN_TX_GPIO             15
 #define CAN_RX_GPIO             36
+#define CAN_BITRATE             500000  /* igual em todos os nos */
 
 /* ================= IDs CAN ================= */
 #define CAN_ID_BCM_STATUS       0x200   /* Tx BCM -> barramento  */

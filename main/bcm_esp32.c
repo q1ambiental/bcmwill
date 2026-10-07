@@ -196,10 +196,12 @@ void app_main(void)
     ESP_ERROR_CHECK(can_bcm_init());
 
     /* Task RX da CAN (0x100 - VelocidadeVeiculo) */
-    xTaskCreate(can_bcm_rx_task, "can_rx", 4096, NULL, 5, NULL);
+    ESP_ERROR_CHECK(xTaskCreate(can_bcm_rx_task, "can_rx", 4096, NULL, 5, NULL)
+                    == pdPASS ? ESP_OK : ESP_ERR_NO_MEM);
 
     /* Task principal do BCM */
-    xTaskCreate(bcm_task, "bcm", 6144, NULL, 5, NULL);
+    ESP_ERROR_CHECK(xTaskCreate(bcm_task, "bcm", 6144, NULL, 5, NULL)
+                    == pdPASS ? ESP_OK : ESP_ERR_NO_MEM);
 
     ESP_LOGI(TAG, "==== BCM pronto ====");
 }
